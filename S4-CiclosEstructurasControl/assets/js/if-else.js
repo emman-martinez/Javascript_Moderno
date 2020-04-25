@@ -36,8 +36,33 @@ if (dia === 0) {
     console.log('Martes');
 } else if (dia === 3) {
     console.log('Miércoles');
-} else if (dia === 4) {
-    console.log('Jueves');
 } else {
     console.log('No es Lunes, Martes, Miércoles o Domingo');
 }
+
+// Sin usar if else, o switch, únicamente con objetos
+dia = 6; // 0: Domingo, 1: Lunes, 2: Martes ...
+
+const diasLetras = {
+    0: () => 'Domingo - 0',
+    1: () => 'Lunes - 1',
+    2: () => 'Martes - 2',
+    3: () => 'Miércoles - 3',
+    4: () => 'Jueves - 4',
+    5: () => 'Viernes - 5',
+    6: () => 'Sábado - 6',
+};
+
+console.log(diasLetras[dia]());
+
+const diasLetras2 = [
+    'Domingo',
+    'Lunes',
+    'Martes',
+    'Miércoles',
+    'Jueves',
+    'Viernes',
+    'Sábado',
+];
+
+console.log(diasLetras2[dia])
