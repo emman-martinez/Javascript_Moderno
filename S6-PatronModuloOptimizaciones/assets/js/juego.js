@@ -150,7 +150,7 @@ btnNuevo.addEventListener('click', () => {
     // console.log('btnNuevo');
 
     console.clear();
-
+    
     deck = [];
     deck = crearDeck();
 
@@ -166,4 +166,4 @@ btnNuevo.addEventListener('click', () => {
     btnPedir.disabled = false;
     btnDetener.disabled = false;
 
-}); 
+});
