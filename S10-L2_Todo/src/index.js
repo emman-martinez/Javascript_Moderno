@@ -1,8 +1,11 @@
-import { saludar } from './js/componentes';
 import './styles.css';
+import { Todo, TodoList } from './classes/index';
+import { crearTodoHtml } from './js/componentes';
 
-import img from './assets/webpack.png';
+export const todoList = new TodoList();
+const tarea = new Todo('Aprender Javascript');
 
-const nombre = 'Emmanu';
+todoList.nuevoTodo(tarea);
+console.log(todoList);
 
-saludar(nombre);
+crearTodoHtml(tarea);
