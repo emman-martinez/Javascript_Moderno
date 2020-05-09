@@ -1,3 +1,4 @@
+import { Todo } from "./todo.class";
 
 export class TodoList {
 
@@ -20,11 +21,11 @@ export class TodoList {
 
     marcarCompletado(id) {
 
-        for(const todo of this.todos) {
-            
+        for (const todo of this.todos) {
+
             //  console.log(id, todo.id);
 
-            if(todo.id == id) {
+            if (todo.id == id) {
 
                 todo.completado = !todo.completado;
                 this.guardarLocalStorage();
@@ -51,9 +52,12 @@ export class TodoList {
 
     cargarLocalStorage() {
 
-        this.todos = (localStorage.getItem('todo')) 
-                        ? JSON.parse(localStorage.getItem('todo')) // JSON(String) a Objeto
-                        : [];
+        this.todos = (localStorage.getItem('todo')) ?
+            JSON.parse(localStorage.getItem('todo')) // JSON(String) a Objeto
+            :
+            [];
+
+        this.todos = this.todos.map(obj => Todo.fromJson(obj));
 
     }
 

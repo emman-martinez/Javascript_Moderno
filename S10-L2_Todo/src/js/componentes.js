@@ -3,8 +3,10 @@ import { todoList } from './../index';
 
 // **** => Referencias en el HTML <= **** //
 const divTodoList = document.querySelector('.todo-list');
-const txtInput    = document.querySelector('.new-todo');
+const txtInput = document.querySelector('.new-todo');
 const btnBorrar = document.querySelector('.clear-completed');
+const ulFiltros = document.querySelector('.filters');
+const anchorFiltros = document.querySelectorAll('.filtro');
 
 export const crearTodoHtml = (todo) => {
 
@@ -29,7 +31,11 @@ export const crearTodoHtml = (todo) => {
 // **** => EVENTOS <= **** //
 txtInput.addEventListener('keyup', (event) => { // Evento que espera a que se suelta la tecla
 
-    if(event.keyCode === 13 && txtInput.value.length > 0) {
+    const tecla = event.keyCode === 13;
+    const tamanoTxt = txtInput.value.length > 0;
+    const sinTexto = txtInput.value.trim() === "";
+
+    if (tecla && tamanoTxt && !sinTexto) {
 
         const { value: tarea } = event.target;
         console.log(tarea);
@@ -38,7 +44,7 @@ txtInput.addEventListener('keyup', (event) => { // Evento que espera a que se su
         crearTodoHtml(nuevoTodo);
         txtInput.value = '';
         // console.log(todoList);
-    
+
     }
 
 });
@@ -64,19 +70,54 @@ divTodoList.addEventListener('click', (event) => {
 
 });
 
-btnBorrar.addEventListener('click' , () => {
+btnBorrar.addEventListener('click', () => {
 
     todoList.eliminarCompletados();
     // console.log(todoList);
 
-    for(let i = divTodoList.children.length - 1; i >= 0 ; i--) {
-        
+    for (let i = divTodoList.children.length - 1; i >= 0; i--) {
+
         const elemento = divTodoList.children[i];
-        
-        if(elemento.classList.contains('completed')) {
+
+        if (elemento.classList.contains('completed')) {
 
             divTodoList.removeChild(elemento);
-            
+
+        }
+
+    }
+
+});
+
+ulFiltros.addEventListener('click', (event) => {
+
+    const filtro = event.target.text;
+    //  console.log(filtro);
+
+    if (!filtro) { return; }
+
+    anchorFiltros.forEach(elem => elem.classList.remove('selected'));
+    event.target.classList.add('selected');
+
+    for (const elemento of divTodoList.children) {
+
+        //  console.log(elemento);
+        elemento.classList.remove('hidden');
+
+        const completado = elemento.classList.contains('completed');
+
+        switch (filtro) {
+            case 'Pendientes':
+                if (completado) {
+                    elemento.classList.add('hidden');
+                }
+                break;
+            case 'Completados':
+                if (!completado) {
+                    elemento.classList.add('hidden');
+                }
+                break;
+            default:
         }
 
     }
