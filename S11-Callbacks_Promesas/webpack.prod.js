@@ -69,7 +69,7 @@ module.exports = {
             ignoreOrder: false
         }),
         new CopyPlugin([
-            {from: 'src/assets', to: 'assets/'}
+            {from: 'src/assets', to: 'assets/'} 
         ]),
         new MinifyPlugin(),
         new CleanWebpackPlugin()
