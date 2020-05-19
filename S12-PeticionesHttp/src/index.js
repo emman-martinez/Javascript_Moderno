@@ -22,3 +22,4 @@ CRUD.actualizarUsuario(1,{
 }).then((usuario) => console.log(usuario));
 
 CRUD.borrarUsuario(1).then((resp) => console.log(resp));
+
